@@ -1,0 +1,85 @@
+import 'package:tstore/features/products/domain/entities/product.dart';
+
+class ProductModel extends Product {
+  const ProductModel({
+    required super.id,
+    required super.name,
+    required super.sku,
+    required super.internalCode,
+    required super.categoryId,
+    required super.brand,
+    required super.shortDescription,
+    required super.descriptionHtml,
+    required super.priceNormal,
+    required super.priceOffer,
+    required super.discount,
+    required super.stock,
+    required super.availability,
+    required super.weight,
+    required super.imageUrl,
+    required super.gallery,
+    required super.videos,
+    required super.documents,
+    required super.attributes,
+    required super.isFeatured,
+    required super.isNew,
+    required super.isOffer,
+    required super.relatedProductIds,
+  });
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'] as int,
+      name: json['name'] as String? ?? '',
+      sku: json['sku'] as String? ?? '',
+      internalCode: json['internal_code'] as String? ?? '',
+      categoryId: json['category_id'] as int? ?? 0,
+      brand: json['brand'] as String? ?? '',
+      shortDescription: json['short_description'] as String? ?? '',
+      descriptionHtml: json['description_html'] as String? ?? '',
+      priceNormal: (json['price_normal'] as num? ?? 0.0).toDouble(),
+      priceOffer: (json['price_offer'] as num? ?? 0.0).toDouble(),
+      discount: (json['discount'] as num? ?? 0.0).toDouble(),
+      stock: json['stock'] as int? ?? 0,
+      availability: json['availability'] as String? ?? '',
+      weight: (json['weight'] as num? ?? 0.0).toDouble(),
+      imageUrl: json['image_url'] as String? ?? '',
+      gallery: (json['gallery'] as List? ?? []).map((e) => e as String).toList(),
+      videos: (json['videos'] as List? ?? []).map((e) => e as String).toList(),
+      documents: (json['documents'] as List? ?? []).map((e) => e as String).toList(),
+      attributes: Map<String, dynamic>.from(json['attributes'] as Map? ?? {}),
+      isFeatured: json['is_featured'] as bool? ?? false,
+      isNew: json['is_new'] as bool? ?? false,
+      isOffer: json['is_offer'] as bool? ?? false,
+      relatedProductIds: (json['related_product_ids'] as List? ?? []).map((e) => e as int).toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'sku': sku,
+      'internal_code': internalCode,
+      'category_id': categoryId,
+      'brand': brand,
+      'short_description': shortDescription,
+      'description_html': descriptionHtml,
+      'price_normal': priceNormal,
+      'price_offer': priceOffer,
+      'discount': discount,
+      'stock': stock,
+      'availability': availability,
+      'weight': weight,
+      'image_url': imageUrl,
+      'gallery': gallery,
+      'videos': videos,
+      'documents': documents,
+      'attributes': attributes,
+      'is_featured': isFeatured,
+      'is_new': isNew,
+      'is_offer': isOffer,
+      'related_product_ids': relatedProductIds,
+    };
+  }
+}
